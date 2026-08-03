@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "global-port-index"
+version = "0.1.0"
+description = "A queryable global index of seaports and anchorages built from UN/LOCODE, NGA World Port Index and OpenStreetMap."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "M. Kavianpour" }]
+keywords = ["maritime", "ports", "anchorage", "unlocode", "world-port-index", "sqlite", "geospatial"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: GIS",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/kavianpour/global-port-index"
+Issues = "https://github.com/kavianpour/global-port-index/issues"
+
+[project.scripts]
+port-index = "port_index.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"*" = ["*.geojson", "*.json"]
