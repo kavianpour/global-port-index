@@ -1,5 +1,7 @@
 # global-port-index
 
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kavianpour/global-port-index/blob/main/notebooks/quickstart.ipynb)
+
 A queryable index of every seaport and anchorage in the public record, built
 from UN/LOCODE, the NGA World Port Index and OpenStreetMap.
 
@@ -26,6 +28,27 @@ idx.in_bbox((103.6, 1.15, 104.1, 1.35))   # everything in Singapore Strait
 idx.nearest_anchorage(51.98, 3.95)    # nearest charted anchorage
 idx.major_ports()                     # WPI Large/Medium seaports only
 ```
+
+## Measured: coverage, joins, and query cost
+
+![World ports](docs/figures/figure_1_world_ports.png)
+
+Real numbers from a full build, not projections:
+
+- **Coordinate coverage: 80.2% → 98.7%** by overlaying a second public source
+  onto the canonical UN/LOCODE list.
+- **21% of resolved coordinates trace back to OpenStreetMap**, not an official
+  maritime authority — exposed per-row via `PortRecord.source`, not buried in
+  a build log.
+- **WPI join: 87.2% exact-LOCODE, 0.2% spatial fallback, 12.6% left
+  unmatched** — the fallback is deliberately conservative rather than
+  maximised.
+- **`nearest()` is 27.4x faster than a brute-force scan** across 17,520
+  seaports, and the gap widens as the table grows.
+- One Large-harbor marker sits alone in the South Atlantic. It isn't a bug —
+  it's Jamestown, Saint Helena, correctly placed.
+
+Full write-up, reproducible in one command: **[docs/ANALYSIS.md](docs/ANALYSIS.md)**
 
 ## Install and build
 

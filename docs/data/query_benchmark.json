@@ -1,0 +1,8 @@
+{
+  "rtree_200_queries_s": 0.3081,
+  "rtree_ms_per_query": 1.541,
+  "brute_20_queries_s": 0.8451,
+  "brute_ms_per_query": 42.256,
+  "brute_extrapolated_200_s": 8.451,
+  "speedup_factor": 27.4
+}
